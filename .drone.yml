@@ -1,0 +1,39 @@
+kind: pipeline
+type: docker
+name: default
+
+clone:
+  disable: true
+
+steps:
+
+  - name: checkout
+    image: hub.naffets.local/drone-runner/git
+    commands:
+      - git clone git@gitea:naffets/molecular.git .
+      - git checkout $DRONE_COMMIT
+
+  - name: docker build
+    image: hub.naffets.local/drone-runner/dind
+    commands:
+      - docker build -t naffets/molecular .
+      - docker tag naffets/molecular hub.naffets.local/naffets/molecular
+      - docker push hub.naffets.local/naffets/molecular
+    volumes:
+      - name: dockersock
+        path: /var/run
+
+services:
+  - name: docker
+    image: hub.naffets.local/drone-runner/dind
+    privileged: true
+    volumes:
+      - name: dockersock
+        path: /var/run
+
+volumes:
+  - name: dockersock
+    temp: {}
+
+node:
+  tag: docker

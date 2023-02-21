@@ -1,0 +1,2 @@
+frontend:
+  directory: "./.dist/frontend"

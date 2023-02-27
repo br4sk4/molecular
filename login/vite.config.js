@@ -3,7 +3,7 @@ import solidPlugin from 'vite-plugin-solid';
 
 export default defineConfig({
   plugins: [solidPlugin()],
-  base: '/login/',
+  base: '/login/ui/',
   server: {
     port: 4000,
   },

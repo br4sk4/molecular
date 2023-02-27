@@ -7,6 +7,15 @@ import (
 )
 
 type Configuration struct {
+	Cognito struct {
+		Region       string `yaml:"region"`
+		ClientID     string `yaml:"clientID"`
+		ClientSecret string `yaml:"clientSecret"`
+	} `yaml:"cognito"`
+	Service struct {
+		MolecularURL string `yaml:"molecularURL"`
+		DexURL       string `yaml:"dexURL"`
+	} `yaml:"service"`
 	Frontend struct {
 		Directory string `yaml:"directory"`
 	} `yaml:"frontend"`

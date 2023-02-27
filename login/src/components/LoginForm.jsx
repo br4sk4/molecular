@@ -42,7 +42,7 @@ function LoginForm() {
 
     const onSignInClicked = () => {
         fetchToken(
-            "/api/authorize/",
+            "/api/auth/",
             username(),
             password()
         ).then((response) => {
